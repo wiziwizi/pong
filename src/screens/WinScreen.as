@@ -7,16 +7,13 @@ package screens
 	import flash.events.KeyboardEvent;
 	import flash.utils.Timer;
 	import flash.events.TimerEvent;
-	/**
-	 * ...
-	 * @author erwin henraat
-	 */
-	public class GameOverScreen extends Screen 
+	
+	public class WinScreen extends Screen 
 	{
 		private var title:TextField;
 		private var timer:Timer;
-		public static const RESETL:String = "reset";
-		public function GameOverScreen() 
+		public static const RESETW:String = "reset";
+		public function WinScreen() 
 		{
 			this.addEventListener(Event.ADDED_TO_STAGE, init);
 			
@@ -28,7 +25,7 @@ package screens
 						
 			title = new TextField();
 			title.embedFonts = true;
-			title.text = "game over";
+			title.text = "congratulations";
 			title.autoSize = TextFieldAutoSize.CENTER;			
 			title.setTextFormat(textFormat);		
 			
@@ -56,14 +53,14 @@ package screens
 			if (e == null)
 			{
 				stage.removeEventListener(KeyboardEvent.KEY_UP, reset);
-				dispatchEvent(new Event(RESETL));
+				dispatchEvent(new Event(RESETW));
 				return;
 			}
 			if (e.keyCode == 32) {				
 				stage.removeEventListener(KeyboardEvent.KEY_UP, reset);				
 				timer.removeEventListener(TimerEvent.TIMER_COMPLETE, onComplete);
 				timer.stop();
-				dispatchEvent(new Event(RESETL));
+				dispatchEvent(new Event(RESETW));
 				
 			}
 		
