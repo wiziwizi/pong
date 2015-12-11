@@ -1,9 +1,6 @@
 package screens 
 {
-	import actors.AI;
-	import actors.Ball;
-	import actors.Paddle;
-	import actors.Player;
+	import actors.*;
 	import flash.display.Bitmap;
 	import flash.display.DisplayObject;
 	import flash.display.MovieClip;
@@ -11,11 +8,11 @@ package screens
 	import flash.geom.Point;
 	import utils.MovementCalculator;
 	import screens.Scoreboard;
-	
 	/**
 	 * ...
-	 * @author erwin henraat
+	 * @author Rico Evers
 	 */
+	
 	public class GameScreen extends Screen
 	{
 		private var balls:Array = [];
@@ -24,8 +21,11 @@ package screens
 		static public const GAME_OVER:String = "game over";
 		static public const WIN:String = "congratulations";
 		static public const BALL_BOUNCE:String = "ballBounce";
+		static public const DSTROY:String = "Destroy";
 		public function GameScreen() 
 		{
+		
+			
 			this.addEventListener(Event.ADDED_TO_STAGE, init);			
 		}				
 		private function init(e:Event):void 
@@ -112,12 +112,14 @@ package screens
 			{
 				destroy();
 				dispatchEvent(new Event(GAME_OVER));
+				dispatchEvent(new Event(DSTROY));
 				
 			}
-			else if (scoreboard.player1 >= 1)
+			else if (scoreboard.player1 >= 20)
 			{
 				destroy();
 				dispatchEvent(new Event(WIN));
+				dispatchEvent(new Event(DSTROY));
 			}
 			
 		}
@@ -130,7 +132,7 @@ package screens
 				removeChild(balls[i]);
 			}
 			balls.splice(0, balls.length);
+			paddles[1].Destroy();
 		}
 	}
-
 }
