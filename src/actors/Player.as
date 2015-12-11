@@ -53,10 +53,21 @@ package actors
 			if (controller.up)
 			{
 				speed = -15;
+				
+				if (y < 0)
+				{
+					trace("hoi");
+					this.y = stage.stageHeight;
+				}
 			}
 			else if(controller.down)
 			{
 				speed = 15;
+				
+				if (this.y > stage.stageHeight)
+				{
+					this.y = 0;
+				}
 				
 			}else
 			{

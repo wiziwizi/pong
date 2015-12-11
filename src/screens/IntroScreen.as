@@ -6,6 +6,7 @@ package screens
 	import flash.text.TextFieldAutoSize;
 	import utils.Controller;
 	import flash.events.KeyboardEvent;
+	import screens.GameScreen;
 	/**
 	 * ...
 	 * @author Rico Evers
@@ -49,16 +50,29 @@ package screens
 			
 			start = new TextField();
 			start.embedFonts = true;
-			start.text = "press space to start";
+			start.text = "1. Normal mode";
 			start.autoSize = TextFieldAutoSize.CENTER;
 			start.setTextFormat(subFormat)
 			
 			start.x = stage.stageWidth / 2 - start.textWidth / 2;
-			start.y = stage.stageHeight / 2 + 20;
+			start.y = stage.stageHeight / 2 + 25;
+			
+			title.mouseEnabled = false;
 			
 			addChild(start);
 			
-			start.addEventListener(Event.ENTER_FRAME, loop);
+			start = new TextField();
+			start.embedFonts = true;
+			start.text = "2. Crazy mode";
+			start.autoSize = TextFieldAutoSize.CENTER;
+			start.setTextFormat(subFormat)
+			
+			title.mouseEnabled = false;
+			
+			start.x = stage.stageWidth / 2 - start.textWidth / 2;
+			start.y = stage.stageHeight / 2 + 50;
+			
+			addChild(start);
 			
 			
 			stage.addEventListener(KeyboardEvent.KEY_UP, onKeyUp);
@@ -66,29 +80,21 @@ package screens
 		
 		private function onKeyUp(e:KeyboardEvent):void 
 		{
-			if (e.keyCode == 32) {
-				start.removeEventListener(Event.ENTER_FRAME, loop);		
+			if (e.keyCode == 49) {	
 				stage.removeEventListener(KeyboardEvent.KEY_UP, onKeyUp);
+				GameScreen.modes = 1;
+				dispatchEvent(new Event(START_GAME));
+				
+			}
+			if (e.keyCode == 50) {
+				stage.removeEventListener(KeyboardEvent.KEY_UP, onKeyUp);
+				GameScreen.modes = 2;
 				dispatchEvent(new Event(START_GAME));
 				
 			}
 		}
 		private var dir:Boolean = true;
-		private function loop(e:Event):void 
-		{
-			if (dir)
-			{
-				start.alpha -= .1;	
-				if (start.alpha <= 0) dir = false;
-				
-			}else
-			{
-				start.alpha += .1;	
-				if (start.alpha >= 1) dir = true;
-			}
-			
-			
-		}
+		
 		
 	}
 
