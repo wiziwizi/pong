@@ -4,13 +4,13 @@ package actors
 	
 	/**
 	 * ...
-	 * @author erwin henraat
+	 * @author Rico Evers
 	 */
 	public class AI extends Paddle 
 	{
 		private var _target:Ball;
 		private var _speed:Number = 0;
-		private var _maxSpeed:Number = 10;
+		private var _maxSpeed:Number = 6;
 		private var _balls:Array;
 		public function set balls(b:Array):void
 		{
@@ -42,7 +42,7 @@ package actors
 		private function loop(e:Event):void 
 		{
 			getTarget();
-									
+				
 			if(_target != null){
 				if (_target.y < this.y - 20)_speed = -_maxSpeed;
 				else if (_target.y > this.y + 20)_speed = _maxSpeed;
