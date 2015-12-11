@@ -9,17 +9,20 @@ package actors
 	import utils.MovementCalculator;
 	/**
 	 * ...
-	 * @author erwin henraat
+	 * @author Rico Evers
 	 */
 	public class Ball extends MovieClip 
 	{
 		private var _movement:Point;
+		private var speed:Number = 7;
+		private var clock:Timer = new Timer(3000, 0);
 		public static const OUTSIDE_RIGHT:String = "outside right";
 		public static const OUTSIDE_LEFT:String = "outside left";
 		public function set movement(m:Point):void
 		{
 			_movement = m;
 		}
+		
 		public function get xMove():Number
 		{
 			return _movement.x;			
@@ -42,6 +45,14 @@ package actors
 			addChild(new BallArt());
 			movement = new Point(0, 0);
 			this.addEventListener(Event.ENTER_FRAME, loop);
+			clock.addEventListener(TimerEvent.TIMER, tick);
+			clock.start();
+		
+			function tick (e:Event):void
+			{
+				speed += 0.3;
+			}
+			
 		}
 		public function reset():void
 		{
@@ -55,7 +66,7 @@ package actors
 		
 		private function restart(e:TimerEvent):void 
 		{
-			_movement = MovementCalculator.calculateMovement(7 + Math.random() * 5, Math.random() * 360);
+			_movement = MovementCalculator.calculateMovement(speed + Math.random() * 5, Math.random() * 160);
 			if (_movement.x > 0 && _movement.x < 2) _movement.x += 2;
 			if (_movement.x < 0 && _movement.x > -2) _movement.x -= 2;
 		}
@@ -83,6 +94,7 @@ package actors
 			this.removeEventListener(Event.ENTER_FRAME, loop);
 			
 		}
+		
 		
 	}
 
