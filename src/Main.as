@@ -7,10 +7,13 @@ package
 	import screens.IntroScreen;
 	import screens.WinScreen;
 	import sounds.SoundPlayer;
-	
+	/**
+	 * ...
+	 * @author Rico Evers
+	 */
 	public class Main extends Sprite 
 	{
-		private var gameScreen:GameScreen
+		private var gameScreen:GameScreen;
 		private var introScreen:IntroScreen;
 		private var gameOverScreen:GameOverScreen;
 		private var winScreen:WinScreen;
@@ -47,7 +50,7 @@ package
 		private function onWin(e:Event):void 
 		{
 			removeChild(gameScreen);
-			gameScreen.removeEventListener(GameScreen.WIN, onGameOver);
+			gameScreen.removeEventListener(GameScreen.WIN, onWin);
 						
 			winScreen = new WinScreen();
 			addChild(winScreen);

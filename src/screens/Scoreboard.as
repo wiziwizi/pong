@@ -9,7 +9,7 @@ package screens
 	import screens.Screen;
 	/**
 	 * ...
-	 * @author erwin henraat
+	 * @author Rico Evers
 	 */
 	public class Scoreboard extends Screen
 	{

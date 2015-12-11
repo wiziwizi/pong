@@ -7,7 +7,10 @@ package screens
 	import flash.events.KeyboardEvent;
 	import flash.utils.Timer;
 	import flash.events.TimerEvent;
-	
+	/**
+	 * ...
+	 * @author Rico Evers
+	 */
 	public class WinScreen extends Screen 
 	{
 		private var title:TextField;
